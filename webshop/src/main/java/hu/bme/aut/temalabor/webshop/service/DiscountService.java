@@ -23,7 +23,7 @@ public class DiscountService {
         List<Category> categories = categoryRepository.findByName(name);
         categories.forEach(c -> {
             c.getProducts().forEach(p ->{
-                p.setPrice(p.getPrice() / 100.0 * (100 + percent));
+                p.setPrice(p.getPrice() / 100.0 * (100 - percent));
                 productRepository.save(p);
             });
         });
