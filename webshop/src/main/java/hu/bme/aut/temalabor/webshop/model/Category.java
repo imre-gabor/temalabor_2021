@@ -8,12 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -24,6 +28,9 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Product> products;
     
+    public Category(String name) {
+        this.name = name;
+    }
     
     public void addProduct(Product product) {
         if(this.products == null)
@@ -32,5 +39,5 @@ public class Category {
         this.products.add(product);
         product.setCategory(this);
     }
-    
+
 }
